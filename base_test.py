@@ -3,7 +3,15 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 class test(object):
-      def getDriver(self, browser):
+
+    def tearDown(self):
+        try:
+            self.driver.quit()
+            pass
+        except:
+            pass
+
+    def getDriver(self, browser, local=False):
         if browser == "firefox":
             cap = DesiredCapabilities.FIREFOX
         if browser == "ie":
@@ -23,9 +31,10 @@ class test(object):
             cap['browserName'] = "Browser"
             cap['platformName'] = "Android"
             cap['deviceName'] = "android"
-
-        #return webdriver.Firefox()
-        return webdriver.Remote(
-                                command_executor='http://10.238.242.50:4444/wd/hub',
-                                desired_capabilities=cap
-                               )
+        if local:
+          return webdriver.Chrome()
+        else:
+          return webdriver.Remote(
+                                  command_executor='http://10.238.242.50:4444/wd/hub',
+                                  desired_capabilities=cap
+                                 )

@@ -11,7 +11,7 @@ class Page(object):
         self.driver = testsetup['driver']
         self.timeout = testsetup['timeout']
         self.driver.implicitly_wait(testsetup['timeout'])
-        self.driver.get(testsetup['goto'])
+        #self.driver.get(testsetup['goto'])
         
         
     def maximize_window(self):

@@ -12,6 +12,8 @@ class webEdit(webObject):
     def append(self,value):
         self.element.send_keys(value)
 
+    def click(self):
+        self.element.click()
 
 class webButton(webObject):
     def click(self):
@@ -30,6 +32,9 @@ class webSelect(webObject):
         option_count = len(self.element.options)
         select = randrange(option_count)
         self.element.select_by_index(select)
+
+    def set(self, value):
+        self.select_by_text(value)
 
 
 class webLink(webObject):
